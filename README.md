@@ -1,6 +1,6 @@
 # Confinity
 
-Confinity is a developer-focused Electron browser in Beta. It provides a fast, extensible browsing experience with built-in support for Chrome Web Store extensions, developer tools, and custom extension loading.
+Confinity is a developer-focused Electron browser in Beta. It provides a fast, extensible browsing experience with built-in support for Chrome Web Store extensions, developer tools, and custom extensions.
 
 ## Table of Contents
 
@@ -8,10 +8,13 @@ Confinity is a developer-focused Electron browser in Beta. It provides a fast, e
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
+  - [Installation Options](#installation-options)
   - [Prerequisites](#prerequisites)
   - [Running from Source](#running-from-source)
+  - [Using the Windows Installer](#using-the-windows-installer)
 - [Usage](#usage)
 - [Development](#development)
+- [Building an Installer](#building-an-installer)
 - [Contributing](#contributing)
 - [Roadmap](#roadmap)
 - [License](#license)
@@ -19,19 +22,20 @@ Confinity is a developer-focused Electron browser in Beta. It provides a fast, e
 
 ## About
 
-Confinity is an Electron-based browser built for developers. It offers a lightweight, customizable alternative to standard browsers with built-in extension support, developer workflows, and performance optimization. The project is actively in Beta, so expect updates and refinements.
+Confinity is an Electron-based browser built for developers. It offers a lightweight, customizable alternative to standard browsers with built-in extension support, developer workflows, and performance optimization.
 
 > NOTE: This project is in Beta. Expect breaking changes, incomplete features, and bugs. Contributions and issue reports are appreciated.
 
 ## Features
 
-- **Electron-based** — cross-platform support (Windows, macOS, Linux)
+- **Electron-based** — cross-platform support (Windows, macOS, Linux in progress)
 - **Chrome Web Store integration** — install extensions directly from the Chrome Web Store
 - **Custom extension support** — load unpacked extensions for development and testing
 - **Developer-friendly** — built with developers in mind
 - **Frameless window** — modern, custom UI with native title bar controls
 - **Extension management** — install, remove, and manage extensions seamlessly
 - **Cache management** — clear browser cache with ease
+- **Windows Installer** — NSIS-based installer with desktop shortcuts
 
 ## Screenshots
 
@@ -39,13 +43,32 @@ Confinity is an Electron-based browser built for developers. It offers a lightwe
 
 ## Getting Started
 
-Follow these instructions to run Confinity from source.
+### Installation Options
+
+Confinity can be used in two ways:
+
+1. **Pre-built Windows Installer** — Download and run the `.exe` file (easiest for end users)
+2. **Run from Source** — Clone the repository and run in development mode (for developers)
 
 ### Prerequisites
 
+#### For Running the Installer
+- **Windows 7 or later**
+- No additional setup required
+
+#### For Running from Source
 - **Node.js** (v18 or higher) and **npm**
 - **Git**
-- **Windows** (currently configured for Windows NSIS installer)
+
+### Using the Windows Installer
+
+1. Download the latest `Confinity-Setup-*.exe` from the [Releases](https://github.com/shaurya0060715-coder/Confinity/releases) page
+2. Run the installer
+3. Follow the installation wizard (you can choose the installation directory)
+4. The installer will create a desktop shortcut
+5. Launch Confinity from your desktop or Start menu
+
+**Note:** The installer will automatically start Confinity after installation completes.
 
 ### Running from Source
 
@@ -83,21 +106,31 @@ The browser will launch with support for Chrome Web Store extensions and unpacke
 Guidance for contributors and maintainers:
 
 - Follow the existing code style and structure
-- Main entry point: `main.js` (Electron main process)
-- UI: `index.html`, `style.css`, `script.js`
-- Extension management is handled via IPC (Inter-Process Communication)
+- **Main entry point:** `main.js` (Electron main process)
+- **UI Files:** `index.html`, `style.css`, `script.js`
+- **Extension management** is handled via IPC (Inter-Process Communication)
+- **Extension code:** `confinity-extension/` directory
+- **Build scripts:** located in `scripts/` directory
 - Create feature branches named `feat/<short-description>` or `fix/<issue-number>`
 - Test extension loading and management before submitting PRs
 
 ## Building an Installer
 
-To create a Windows NSIS installer:
+To create a Windows NSIS installer on your local machine:
 
 ```bash
 npm run dist
 ```
 
-The installer will be generated in the `dist/` folder with desktop shortcuts and installation options.
+This will:
+- Package the Electron application
+- Create an NSIS installer executable
+- Output the installer to the `dist/` folder
+- Generate desktop shortcuts and installation options
+
+**Requirements:**
+- NSIS must be installed on your system (Windows only)
+- The installer includes a customizable installation directory
 
 ## Contributing
 
@@ -118,6 +151,7 @@ Planned improvements:
 - Advanced extension settings and permissions UI
 - Sync and account features
 - Built-in developer tools improvements
+- Auto-update functionality
 
 ## License
 
