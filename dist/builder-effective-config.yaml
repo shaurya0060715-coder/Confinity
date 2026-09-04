@@ -1,0 +1,16 @@
+directories:
+  output: dist
+  buildResources: build
+win:
+  target: nsis
+  icon: Confinity.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  runAfterFinish: true
+  installerIcon: Confinity.ico
+  uninstallerIcon: Confinity.ico
+  installerHeaderIcon: Confinity.ico
+files: []
+electronVersion: 42.4.0

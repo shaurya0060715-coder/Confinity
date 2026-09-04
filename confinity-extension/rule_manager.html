@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Confinity Rule Manager</title></head>
+<body>
+  <h2>Manage Rule Packs</h2>
+  <p>Install a curated rule pack (download and apply with consent). This will replace previously applied dynamic rules.</p>
+  <label>Pack URL: <input id="packUrl" placeholder="https://example.com/myrules.json" size="60"></label>
+  <div style="margin-top:8px">
+    <button id="install">Install Pack</button>
+    <button id="remove">Remove Applied Pack</button>
+  </div>
+  <div id="status" style="margin-top:12px;color:#444"></div>
+  <script>
+    const status = document.getElementById('status');
+    document.getElementById('install').addEventListener('click', ()=>{
+      const url = document.getElementById('packUrl').value.trim();
+      if (!url) return alert('Enter pack URL');
+      if (!confirm('Install rule pack from: ' + url + '\nYou consent to download and apply rules to your browser.')) return;
+      status.textContent = 'Installing...';
+      chrome.runtime.sendMessage({action:'applyRulePack', url}, (resp)=>{
+        if (!resp){ status.textContent = 'No response from background script'; return }
+        if (resp.success) status.textContent = 'Installed ' + resp.installed + ' rules.'; else status.textContent = 'Failed: ' + (resp.error||'unknown');
+      });
+    });
+    document.getElementById('remove').addEventListener('click', ()=>{
+      if (!confirm('Remove applied dynamic rules?')) return;
+      chrome.runtime.sendMessage({action:'removeRulePack'}, (resp)=>{
+        if (!resp){ status.textContent = 'No response from background script'; return }
+        status.textContent = resp.success ? 'Removed rules' : ('Failed: '+(resp.error||'unknown'));
+      });
+    });
+  </script>
+</body>
+</html>

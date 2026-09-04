@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Confinity</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- FIXED INTEGRATED TOP BAR & TAB STRIP SYSTEM -->
+  <div id="confinity-header-system">
+
+    <!-- CHROMIUM STYLE HORIZONTAL TAB BAR STRIP -->
+    <div id="confinity-tabs-strip-row">
+
+      <!-- INVISIBLE DRAG ELEMENT BOX HOOK FOR WINDOW MOVEMENT -->
+      <div class="confinity-app-drag-anchor"></div>
+
+      <!-- NEW CHROME LAYOUT: Container now wraps both the tabs and the inline '+' trigger button -->
+      <div id="tabs-container-wrapper">
+        <div id="dynamic-tabs-holder"></div>
+        <button id="cnav-new-tab-trigger" title="New Tab">+</button>
+      </div>
+
+      <!-- INTEGRATED CORE SYSTEM WINDOW ACTION CONTROLS INLINE -->
+      <div class="window-controls-container">
+        <button class="sys-control-btn" id="sys-min" title="Minimize">&#9472;</button>
+        <button class="sys-control-btn" id="sys-max" title="Maximize">&#9633;</button>
+        <button class="sys-control-btn" id="sys-close" title="Close">&#10005;</button>
+      </div>
+    </div>
+
+    <!-- CORE ACTION NAVIGATION ACTION BAR -->
+    <div id="confinity-native-toolbar">
+      <div class="confinity-nav-core-wrapper">
+        <button class="conf-nav-btn" id="cnav-undo" title="Back">⟲</button>
+        <button class="conf-nav-btn" id="cnav-redo" title="Forward">⟳</button>
+        <button class="conf-nav-btn" id="cnav-reload" title="Reload">↻</button>
+        <button class="conf-nav-btn" id="cnav-home" title="Home">⌂</button>
+      </div>
+
+      <div class="confinity-address-zone">
+        <div id="search-engine-indicator">Google</div>
+        <input type="text" id="confinity-native-search" placeholder="Search or type a web URL..."
+          autocomplete="off" autofocus>
+      </div>
+
+      <div class="confinity-actions-zone">
+        <button class="conf-nav-btn" id="cnav-ai-toggle" title="AI Assistant">✦</button>
+        <button class="conf-nav-btn" id="cnav-extensions-toggle" title="Chrome Web Store">🧩</button>
+        <button class="conf-nav-btn" id="cnav-settings-toggle" title="Settings & Extensions">⚙️</button>
+        <button class="conf-nav-btn" id="cnav-account-toggle" title="Confinity Cloud Account">👤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE SPLIT INTERACTIVE MAIN WORKSPACE PANELS MANAGER -->
+  <div id="confinity-workspace">
+
+    <!-- LOCAL USER SECURITY ACCOUNT MANAGEMENT SYNC PANEL -->
+    <div id="account-sidebar" class="sidebar hidden">
+      <h3>Confinity Ecosystem</h3>
+      <div id="account-status">Guest Session Profile</div>
+
+      <div id="account-form-zone">
+        <input type="text" id="acc-username" placeholder="Username/Email" autocomplete="off">
+        <button id="btn-login" class="action-button">Sign In & Sync</button>
+      </div>
+
+      <p class="sync-info">Encrypts and syncs browser tabs, search indexes, and histories locally.</p>
+    </div>
+
+    <!-- CORE DISPLAY PORTS MATRIX CONTAINER -->
+    <div id="confinity-viewport-container">
+      <!-- CONFINITY HOME LANDING DISPLAY -->
+      <div class="container" id="home-view">
+        <div class="logo-area">
+          <svg class="logo-icon" viewBox="0 0 1024 1024" role="img" aria-label="Confinity">
+            <defs>
+              <!-- badge face: light cyan at the top falling to deep blue -->
+              <linearGradient id="cf-badge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8ce0e9" />
+                <stop offset="50%" stop-color="#4ea3ca" />
+                <stop offset="100%" stop-color="#0f65ab" />
+              </linearGradient>
+              <linearGradient id="cf-bezel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ededed" />
+                <stop offset="55%" stop-color="#d8d8d8" />
+                <stop offset="100%" stop-color="#bdbdbd" />
+              </linearGradient>
+              <!-- the band that sits underneath where the spiral laps over itself -->
+              <linearGradient id="cf-underlap" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2684d5" />
+                <stop offset="100%" stop-color="#0869af" />
+              </linearGradient>
+              <!-- blue at the tail sweeping up to teal at the overlapping head -->
+              <linearGradient id="cf-swirl" x1="0.1" y1="1" x2="0.9" y2="0">
+                <stop offset="0%" stop-color="#0188e4" />
+                <stop offset="45%" stop-color="#03aedc" />
+                <stop offset="75%" stop-color="#05cad3" />
+                <stop offset="100%" stop-color="#08e2cd" />
+              </linearGradient>
+              <filter id="cf-soft" x="-25%" y="-25%" width="150%" height="150%">
+                <feGaussianBlur stdDeviation="9" />
+              </filter>
+            </defs>
+
+            <rect x="100" y="103" width="824" height="824" rx="175" fill="url(#cf-badge)" />
+
+            <circle cx="512" cy="515" r="359" fill="none" stroke="#3d4a52" stroke-width="6" opacity="0.5"
+              filter="url(#cf-soft)" />
+            <circle cx="512" cy="515" r="323" fill="none" stroke="url(#cf-bezel)" stroke-width="72" />
+
+            <g class="logo-swirl">
+              <circle cx="512" cy="515" r="203.5" fill="none" stroke="url(#cf-underlap)" stroke-width="167" />
+              <!-- 190deg -> 425deg, so the round cap lands back on top of the tail -->
+              <path d="M 476.7 715.4 A 203.5 203.5 0 1 1 696.4 429" fill="none" stroke="#0a3c61" stroke-width="167"
+                stroke-linecap="round" opacity="0.45" filter="url(#cf-soft)" transform="translate(-8 -10)" />
+              <path d="M 476.7 715.4 A 203.5 203.5 0 1 1 696.4 429" fill="none" stroke="url(#cf-swirl)"
+                stroke-width="167" stroke-linecap="round" />
+            </g>
+
+            <circle cx="513" cy="517" r="120" fill="#0d4875" opacity="0.5" filter="url(#cf-soft)"
+              transform="translate(-8 -10)" />
+            <circle cx="513" cy="517" r="120" fill="#fdfdfd" />
+          </svg>
+          <h1 class="brand-title">Confinity</h1>
+        </div>
+      </div>
+
+      <!-- DYNAMIC WEBVIEW POOL INJECTION HOLDER -->
+      <div id="webviews-render-stack-wrapper"></div>
+    </div>
+
+    <!-- AI ASSISTANT PANEL (RIGHT SIDE) -->
+    <div id="ai-assistant-panel" class="hidden">
+      <div class="ai-panel-header">
+        <h3>✦ Confinity AI</h3>
+        <button id="ai-panel-close" class="ai-close-btn">×</button>
+      </div>
+      <div id="ai-page-insights">
+        <div class="ai-insight-card">
+          <div class="insight-label">Page Insights</div>
+          <div id="ai-page-stats" class="ai-stats-grid">
+            <span class="ai-stat">Navigate to a page first</span>
+          </div>
+        </div>
+        <div class="ai-insight-card">
+          <div class="insight-label">Key Content</div>
+          <p id="ai-summary-text" class="ai-summary">No page loaded yet.</p>
+        </div>
+      </div>
+      <div id="ai-chat-area">
+        <div id="ai-messages"></div>
+        <div class="ai-input-row">
+          <input type="text" id="ai-chat-input" placeholder="Ask about this page..." autocomplete="off">
+          <button id="ai-send-btn" title="Send">→</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SETTINGS & EXTENSIONS OVERLAY -->
+  <div id="settings-overlay" class="hidden">
+      <div class="settings-container">
+          <div class="settings-sidebar">
+              <h2>Settings</h2>
+              <ul id="settings-tabs">
+                  <li data-target="settings-search" class="active">Search Engine</li>
+                  <li data-target="settings-appearance">Appearance</li>
+                  <li data-target="settings-extensions">Extensions Manager</li>
+                  <li data-target="settings-privacy">Privacy</li>
+                  <li data-target="settings-downloads">Downloads</li>
+                  <li data-target="settings-startup">Startup Behavior</li>
+                  <li data-target="settings-ai">AI Assistant</li>
+              </ul>
+              <button id="close-settings-btn" class="action-button">Close Settings</button>
+          </div>
+          <div class="settings-content">
+              <!-- Search Engine -->
+              <div id="settings-search" class="settings-panel active">
+                  <h3>Search Engine</h3>
+                  <p>Select the default search engine used in the address bar.</p>
+                  <select id="search-engine-select">
+                      <option value="Google">Google</option>
+                      <option value="DuckDuckGo">DuckDuckGo</option>
+                      <option value="Brave Search">Brave Search</option>
+                      <option value="Bing">Bing</option>
+                      <option value="ConfiSearch">ConfiSearch</option>
+                  </select>
+              </div>
+              <!-- Appearance -->
+              <div id="settings-appearance" class="settings-panel">
+                  <h3>Appearance</h3>
+                  <p>Theme settings.</p>
+                  <select id="theme-select">
+                      <option value="dark">Dark Theme (Default)</option>
+                      <option value="light">Light Theme</option>
+                  </select>
+              </div>
+              <!-- Extensions Manager -->
+              <div id="settings-extensions" class="settings-panel">
+                  <h3>Extensions Manager</h3>
+                  <div class="extensions-info">
+                      <p>Install directly from the Chrome Web Store &mdash; browse to a listing and use
+                          <strong>Add to Confinity</strong>, or paste a store link / extension ID below.
+                          Note that Confinity supports a subset of the Chrome extension APIs, so an
+                          extension may load with some features unavailable.</p>
+                      <div class="ext-install-row">
+                          <input type="text" id="webstore-ext-input" autocomplete="off"
+                              placeholder="Web Store URL or extension ID">
+                          <button id="install-webstore-ext" class="action-button">Install</button>
+                      </div>
+                      <button id="load-unpacked-ext" class="action-button">Load Unpacked Extension...</button>
+                  </div>
+                  <div id="installed-extensions-list"></div>
+              </div>
+              <!-- Privacy -->
+              <div id="settings-privacy" class="settings-panel">
+                  <h3>Privacy & Security</h3>
+                  <label><input type="checkbox" id="clear-data-on-exit"> Clear browsing data on exit</label>
+                  <br><br>
+                  <button id="clear-cache-btn" class="action-button danger-tab-btn">Clear Browsing Cache</button>
+              </div>
+              <!-- Downloads -->
+              <div id="settings-downloads" class="settings-panel">
+                  <h3>Downloads</h3>
+                  <p>Manage download behavior.</p>
+                  <label><input type="checkbox" id="ask-download-path"> Ask where to save each file before downloading</label>
+              </div>
+              <!-- Startup -->
+              <div id="settings-startup" class="settings-panel">
+                  <h3>Startup Behavior</h3>
+                  <label><input type="radio" name="startup" value="newtab" checked> Open the New Tab page</label><br><br>
+                  <label><input type="radio" name="startup" value="continue"> Continue where you left off</label>
+              </div>
+              <!-- AI Assistant -->
+              <div id="settings-ai" class="settings-panel">
+                  <h3>AI Assistant</h3>
+                  <p>Configure the integrated AI assistant (powered by Anthropic Claude).</p>
+                  <br>
+                  <label>Anthropic API Key:</label><br>
+                  <input type="password" id="ai-api-key" placeholder="sk-ant-api03-..." style="width: 100%; padding: 8px; margin-top: 5px; background: #0f1523; color: white; border: 1px solid #1e293b; border-radius: 4px;">
+                  <br><br>
+                  <label>AI Model:</label><br>
+                  <select id="ai-model-select" style="width: 100%; padding: 8px; margin-top: 5px; background: #0f1523; color: white; border: 1px solid #1e293b; border-radius: 4px;">
+                      <option value="claude-3-5-sonnet-20241022">Claude 3.5 Sonnet</option>
+                      <option value="claude-3-5-haiku-20241022">Claude 3.5 Haiku</option>
+                      <option value="claude-3-opus-20240229">Claude 3 Opus</option>
+                      <option value="claude-3-haiku-20240307">Claude 3 Haiku</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- COMMAND PALETTE -->
+  <div id="command-palette-overlay" class="hidden">
+    <div class="command-palette">
+      <div class="cp-input-row">
+        <span class="cp-icon">⌘</span>
+        <input type="text" id="cp-input" placeholder="Search tabs, actions, settings..." autocomplete="off">
+        <kbd class="cp-kbd">ESC</kbd>
+      </div>
+      <div id="cp-results"></div>
+      <div class="cp-footer">
+        <span>↑↓ Navigate</span><span>↵ Select</span><span>Esc Close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB CONTEXT MENU -->
+  <div id="tab-context-menu" class="hidden">
+    <div class="ctx-item" data-action="new-group">➕ New Tab Group...</div>
+    <div id="ctx-groups-list"></div>
+    <div class="ctx-item" data-action="remove-from-group">✖ Remove from Group</div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" data-action="duplicate-tab">⧉ Duplicate Tab</div>
+    <div class="ctx-item" data-action="close-tab">✕ Close Tab</div>
+    <div class="ctx-item ctx-danger" data-action="close-others">Close Other Tabs</div>
+  </div>
+
+  <!-- NEW GROUP DIALOG -->
+  <div id="new-group-dialog" class="hidden">
+    <div class="ngd-content">
+      <h4>Create Tab Group</h4>
+      <input type="text" id="ngd-name" placeholder="Group name..." autocomplete="off">
+      <div id="ngd-colors" class="ngd-color-row"></div>
+      <div class="ngd-actions">
+        <button id="ngd-cancel">Cancel</button>
+        <button id="ngd-create" class="action-button">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

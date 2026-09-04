@@ -1,0 +1,3 @@
+# Sample adblock patterns (use maintainable lists like EasyList in production)
+||ads.example.com^ 
+||tracker.example.net^
