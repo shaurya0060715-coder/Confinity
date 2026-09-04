@@ -1,6 +1,6 @@
 # Confinity
 
-Confinity is a developer-focused web browser currently in Beta. It aims to provide tools and workflows tailored to web developers, including built-in debugging utilities, performance profiling, and extensibility for developer workflows. This README is a starting point — update the sections below to reflect your project's specifics.
+Confinity is a developer-focused Electron browser in Beta. It provides a fast, extensible browsing experience with built-in support for Chrome Web Store extensions, developer tools, and custom extension loading.
 
 ## Table of Contents
 
@@ -9,8 +9,7 @@ Confinity is a developer-focused web browser currently in Beta. It aims to provi
 - [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Install / Build](#install--build)
-  - [Run](#run)
+  - [Running from Source](#running-from-source)
 - [Usage](#usage)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -20,131 +19,112 @@ Confinity is a developer-focused web browser currently in Beta. It aims to provi
 
 ## About
 
-Confinity is a developer browser in active Beta. The goal is to give developers the right tools out-of-the-box for debugging, profiling, and building web apps — while keeping the browser fast and extensible.
+Confinity is an Electron-based browser built for developers. It offers a lightweight, customizable alternative to standard browsers with built-in extension support, developer workflows, and performance optimization. The project is actively in Beta, so expect updates and refinements.
 
 > NOTE: This project is in Beta. Expect breaking changes, incomplete features, and bugs. Contributions and issue reports are appreciated.
 
 ## Features
 
-- Developer-friendly UI and tooling (devtools-first)
-- Fast page loading and profiling tools
-- Built-in network, DOM, and performance inspectors
-- Extensible architecture for plugins and developer workflows
-- Cross-platform support (Windows, macOS, Linux) — implementation-dependent
-
-(Please edit this list to match your actual implementation.)
+- **Electron-based** — cross-platform support (Windows, macOS, Linux)
+- **Chrome Web Store integration** — install extensions directly from the Chrome Web Store
+- **Custom extension support** — load unpacked extensions for development and testing
+- **Developer-friendly** — built with developers in mind
+- **Frameless window** — modern, custom UI with native title bar controls
+- **Extension management** — install, remove, and manage extensions seamlessly
+- **Cache management** — clear browser cache with ease
 
 ## Screenshots
 
-Add screenshots or animated GIFs of the browser in the `assets/` folder and link them here.
-
-![Confinity UI](./assets/screenshot-1.png)
+![Confinity UI](./Confinity.png)
 
 ## Getting Started
 
-Follow these instructions to get a local development copy running.
+Follow these instructions to run Confinity from source.
 
 ### Prerequisites
 
-List the tools and versions required to build and run Confinity. Examples:
+- **Node.js** (v18 or higher) and **npm**
+- **Git**
+- **Windows** (currently configured for Windows NSIS installer)
 
-- Git
-- Node.js (>= 18) and npm or yarn — if using Electron/Node
-- Rust and Cargo — if parts are written in Rust
-- CMake / build tools — for native modules
-
-Update this list to match the project's tech stack.
-
-### Install / Build
-
-Replace the commands below with the real build steps for your project.
+### Running from Source
 
 1. Clone the repository
 
+   ```bash
    git clone https://github.com/shaurya0060715-coder/Confinity.git
    cd Confinity
+   ```
 
 2. Install dependencies
 
-   # If using Node/Electron
+   ```bash
    npm install
-   # or
-   yarn install
+   ```
 
-3. Build
+3. Start the application in development mode
 
-   npm run build
-   # or your project's build command
+   ```bash
+   npm start
+   ```
 
-### Run
-
-Start the application in development mode or run the built binary.
-
-# Development mode
-
-npm run dev
-
-# Run a packaged build (example)
-
-npm start
-
-Adjust these commands to match the actual project scripts and packaging strategy.
+The browser will launch with support for Chrome Web Store extensions and unpacked extensions.
 
 ## Usage
 
-Describe how to use Confinity, common workflows, and advanced features. Examples:
-
-- Open DevTools with `Ctrl+Shift+I`
-- Use the built-in network inspector to capture requests
-- Install plugins/extensions via an `extensions/` folder (if supported)
+- **Install extensions from Chrome Web Store** — use the Confinity UI to add extensions directly
+- **Load unpacked extensions** — load local extension folders for development
+- **Manage extensions** — remove or disable extensions via the extensions menu
+- **Custom UI** — use the frameless window with integrated title bar controls
+- **Clear cache** — quickly clear browser cache from the settings
 
 ## Development
 
 Guidance for contributors and maintainers:
 
-- Follow the code style and linting rules in the repository (add ESLint/Prettier configs if used)
+- Follow the existing code style and structure
+- Main entry point: `main.js` (Electron main process)
+- UI: `index.html`, `style.css`, `script.js`
+- Extension management is handled via IPC (Inter-Process Communication)
 - Create feature branches named `feat/<short-description>` or `fix/<issue-number>`
-- Write tests for new features and bug fixes
-- Add changelog entries for user-visible changes
+- Test extension loading and management before submitting PRs
+
+## Building an Installer
+
+To create a Windows NSIS installer:
+
+```bash
+npm run dist
+```
+
+The installer will be generated in the `dist/` folder with desktop shortcuts and installation options.
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`feat/<description>` or `fix/<issue-number>`)
 3. Commit changes with descriptive messages
 4. Open a Pull Request describing the change and why it's needed
 
-Consider adding a `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` to the repo with more detailed guidelines.
-
 ## Roadmap
 
-Planned items (example):
+Planned improvements:
 
 - Stable release (v1.0)
-- Extension/plugin system
-- Syncing and account features
+- macOS and Linux support
 - Performance improvements and memory profiling
-
-Adjust this roadmap to match your priorities.
+- Advanced extension settings and permissions UI
+- Sync and account features
+- Built-in developer tools improvements
 
 ## License
 
-This project currently has no license file in the repository. Add a license (for example, `MIT` or `Apache-2.0`) if you want to define reuse terms.
-
-Example: MIT License — see `LICENSE` for details.
+This project currently has no license file. Consider adding one (e.g., MIT, Apache-2.0) to define usage terms.
 
 ## Contact
 
-Maintainer: shaurya0060715-coder
+Maintainer: [shaurya0060715-coder](https://github.com/shaurya0060715-coder)
 
-For issues, please open an issue on the repository: https://github.com/shaurya0060715-coder/Confinity/issues
-
----
-
-If you'd like, I can also:
-
-- Add a LICENSE file (MIT, Apache-2.0, etc.)
-- Create CONTRIBUTING.md and CODE_OF_CONDUCT.md templates
-- Tailor the README with exact build/run commands if you tell me the project's tech stack (Electron/Node, Rust, C++, etc.)
+For issues or feature requests, please open an issue on the repository: https://github.com/shaurya0060715-coder/Confinity/issues
